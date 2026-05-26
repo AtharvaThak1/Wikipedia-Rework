@@ -19,15 +19,7 @@ A modern knowledge discovery mobile app built with React Native, Expo, and Expre
 
 ---
 
-## 📸 Screenshots
 
-> Add your screenshots inside a `/screenshots` folder and update paths below.
-
-| Home | Search | Details |
-|------|------|------|
-| ![](./screenshots/home.png) | ![](./screenshots/search.png) | ![](./screenshots/detail.png) |
-
----
 
 # 📲 Download APK
 
