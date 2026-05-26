@@ -1,1 +1,454 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NovaSphere</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background: #09090b;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      .bg-glow {
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        background: #8b5cf6;
+        filter: blur(180px);
+        opacity: 0.2;
+        top: -200px;
+        right: -200px;
+        z-index: -1;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        padding: 24px;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 10px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-circle {
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        background: #8b5cf6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+      }
+
+      .logo h1 {
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .hero {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+
+      .hero-content {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #18181b;
+        border: 1px solid #27272a;
+        padding: 12px 18px;
+        border-radius: 999px;
+        margin-bottom: 24px;
+        color: #a1a1aa;
+        font-size: 14px;
+      }
+
+      .hero h2 {
+        font-size: 72px;
+        line-height: 1.05;
+        font-weight: 800;
+        margin-bottom: 24px;
+      }
+
+      .gradient {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        color: #a1a1aa;
+        font-size: 18px;
+        line-height: 34px;
+        max-width: 620px;
+      }
+
+      .buttons {
+        margin-top: 40px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        height: 58px;
+        padding: 0 28px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 700;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+
+      .primary {
+        background: #8b5cf6;
+        color: white;
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.35);
+      }
+
+      .primary:hover {
+        transform: translateY(-3px);
+      }
+
+      .secondary {
+        background: #18181b;
+        border: 1px solid #27272a;
+        color: white;
+      }
+
+      .secondary:hover {
+        background: #222226;
+      }
+
+      .hero-phone {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .phone {
+        width: 320px;
+        height: 650px;
+        background: #111114;
+        border-radius: 42px;
+        border: 1px solid #27272a;
+        padding: 18px;
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+        position: relative;
+      }
+
+      .phone-screen {
+        width: 100%;
+        height: 100%;
+        border-radius: 32px;
+        overflow: hidden;
+        background: linear-gradient(to bottom, #111114, #09090b);
+        padding: 24px;
+      }
+
+      .search {
+        width: 100%;
+        height: 58px;
+        background: #18181b;
+        border-radius: 18px;
+        border: 1px solid #27272a;
+        margin-top: 30px;
+      }
+
+      .card {
+        width: 100%;
+        background: #18181b;
+        border: 1px solid #27272a;
+        border-radius: 24px;
+        padding: 20px;
+        margin-top: 18px;
+      }
+
+      .card.large {
+        height: 180px;
+        background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      }
+
+      .section-title {
+        font-size: 42px;
+        text-align: center;
+        margin-top: 120px;
+        margin-bottom: 20px;
+        font-weight: 800;
+      }
+
+      .section-sub {
+        text-align: center;
+        color: #a1a1aa;
+        max-width: 700px;
+        margin: auto;
+        line-height: 30px;
+        font-size: 17px;
+      }
+
+      .features {
+        margin-top: 70px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .feature-card {
+        background: #18181b;
+        border: 1px solid #27272a;
+        border-radius: 28px;
+        padding: 28px;
+        transition: 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-6px);
+        border-color: #8b5cf6;
+      }
+
+      .feature-icon {
+        width: 62px;
+        height: 62px;
+        border-radius: 20px;
+        background: #8b5cf6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 22px;
+      }
+
+      .feature-card h3 {
+        font-size: 22px;
+        margin-bottom: 14px;
+      }
+
+      .feature-card p {
+        color: #a1a1aa;
+        line-height: 28px;
+      }
+
+      footer {
+        margin-top: 120px;
+        padding-bottom: 40px;
+        text-align: center;
+        color: #71717a;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding-top: 40px;
+        }
+
+        .buttons {
+          justify-content: center;
+        }
+
+        .hero h2 {
+          font-size: 52px;
+        }
+
+        .hero p {
+          margin: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg-glow"></div>
+
+    <div class="container">
+      <!-- NAVBAR -->
+
+      <nav>
+        <div class="logo">
+          <div class="logo-circle">
+            <i data-lucide="sparkles"></i>
+          </div>
+
+          <h1>NovaSphere</h1>
+        </div>
+      </nav>
+
+      <!-- HERO -->
+
+      <section class="hero">
+        <div class="hero-content">
+          <div class="tag">
+            <i data-lucide="rocket"></i>
+
+            Modern Knowledge Discovery Platform
+          </div>
+
+          <h2>
+            Explore The World Of
+            <span class="gradient"> Knowledge </span>
+          </h2>
+
+          <p>
+            NovaSphere is a beautifully designed mobile app that helps users
+            discover, explore, and learn millions of topics powered by Wikipedia
+            APIs with a fast, modern, and elegant experience.
+          </p>
+
+          <div class="buttons">
+            <a
+              href="https://github.com/AtharvaThak1/Wikipedia-Rework/releases/download/v1.0.0/application-6fca5a7d-952c-4c7b-a336-d4bae4ea88a8.apk"
+              class="btn primary"
+              download
+            >
+              <i data-lucide="download"></i>
+
+              Download APK
+            </a>
+
+            <a
+              href="https://github.com/AtharvaThak1/Wikipedia-Rework"
+              class="btn secondary"
+            >
+              <i data-lucide="github"></i>
+
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- PHONE -->
+
+        <div class="hero-phone">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="card large"></div>
+
+              <div class="search"></div>
+
+              <div class="card"></div>
+
+              <div class="card"></div>
+
+              <div class="card"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+
+      <section>
+        <h2 class="section-title">Powerful Features</h2>
+
+        <p class="section-sub">
+          Designed with a modern UI and powered by real-world APIs to provide a
+          premium learning and exploration experience.
+        </p>
+
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="search"></i>
+            </div>
+
+            <h3>Smart Search</h3>
+
+            <p>
+              Instantly search millions of topics with blazing-fast results.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="image"></i>
+            </div>
+
+            <h3>Rich Images</h3>
+
+            <p>Explore topics with beautiful high-quality related images.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="book-open"></i>
+            </div>
+
+            <h3>Detailed Articles</h3>
+
+            <p>Read detailed information, summaries, and related articles.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="zap"></i>
+            </div>
+
+            <h3>Lightning Fast</h3>
+
+            <p>
+              Optimized for smooth and responsive performance on all devices.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+
+      <footer>© 2026 NovaSphere • Built with React Native & Express</footer>
+    </div>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
